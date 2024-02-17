@@ -60,7 +60,14 @@ func NewConvertNFTCmd() *cobra.Command {
 			}
 
 			contractAddress := args[2]
+			if contractAddress == "" {
+				return fmt.Errorf("contract address can not be empty")
+			}
+
 			tokenIDs := strings.Split(args[3], ",")
+			if len(tokenIDs) == 0 {
+				return fmt.Errorf("token IDs can not be empty")
+			}
 
 			var receiver string
 			sender := cliCtx.GetFromAddress()
@@ -106,6 +113,10 @@ func NewConvertCW721Cmd() *cobra.Command {
 			}
 
 			contractAddress := args[0]
+			if len(contractAddress) == 0 {
+				return fmt.Errorf("contract address can not be empty")
+			}
+
 			tokenIDs := strings.Split(args[1], ",")
 			if len(tokenIDs) == 0 {
 				return fmt.Errorf("tokenID can not be empty")
@@ -115,7 +126,14 @@ func NewConvertCW721Cmd() *cobra.Command {
 			from := cliCtx.GetFromAddress()
 
 			classID := args[2]
+			if len(classID) == 0 {
+				return fmt.Errorf("classId can not be empty")
+			}
+
 			nftIDs := strings.Split(args[3], ",")
+			if len(nftIDs) == 0 {
+				return fmt.Errorf("nft IDs can not be empty")
+			}
 
 			receiver := cliCtx.GetFromAddress()
 			if len(args) == 5 {
@@ -168,16 +186,36 @@ func NewTransferCW721Cmd() *cobra.Command {
 			cwSender := cliCtx.GetFromAddress()
 
 			cwContractAddress := args[0]
+			if cwContractAddress == "" {
+				return fmt.Errorf("contract address can not be empty")
+			}
+
 			cwTokenIds := strings.Split(args[1], ",")
 			if len(cwTokenIds) == 0 {
 				return fmt.Errorf("tokenID can not be empty")
 			}
-			sourcePort := args[2]
-			sourceChannel := args[3]
-			cosmosReceiver := args[4]
-			classId := args[5]
-			cosmosTokenIds := strings.Split(args[6], ",")
 
+			sourcePort := args[2]
+			if sourcePort == "" {
+				return fmt.Errorf("source port address can not be empty")
+			}
+
+			sourceChannel := args[3]
+			if sourceChannel == "" {
+				return fmt.Errorf("source channel address can not be empty")
+			}
+
+			cosmosReceiver := args[4]
+			if cosmosReceiver == "" {
+				return fmt.Errorf("cosmos channel address can not be empty")
+			}
+
+			classId := args[5]
+			if classId == "" {
+				return fmt.Errorf("classId can not be empty")
+			}
+
+			cosmosTokenIds := strings.Split(args[6], ",")
 			if len(cwTokenIds) == 0 {
 				return fmt.Errorf("tokenIDs cannot be empty")
 			}
