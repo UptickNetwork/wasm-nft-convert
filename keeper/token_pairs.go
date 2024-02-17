@@ -8,7 +8,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/UptickNetwork/uptick/x/cw721/types"
+	"github.com/UptickNetwork/wasm-nft-convert/types"
 )
 
 // GetTokenPairs - get all registered token tokenPairs

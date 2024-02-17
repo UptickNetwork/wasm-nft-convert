@@ -13,7 +13,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"math/big"
 
-	"github.com/UptickNetwork/uptick/x/cw721/types"
+	"github.com/UptickNetwork/wasm-nft-convert/types"
 )
 
 // ContractInfo {"data":{"name":"uptick test collection","symbol":"uptick-test-01"}}

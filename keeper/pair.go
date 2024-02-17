@@ -4,12 +4,12 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/UptickNetwork/uptick/x/cw721/types"
+	"github.com/UptickNetwork/wasm-nft-convert/types"
 )
 
 // GetPair checks that:
-//  - the global parameter for cw721 conversion is enabled
-//  - minting is enabled for the given (cw721,nft) token pair
+//   - the global parameter for cw721 conversion is enabled
+//   - minting is enabled for the given (cw721,nft) token pair
 func (k Keeper) GetPair(
 	ctx sdk.Context,
 	token string,

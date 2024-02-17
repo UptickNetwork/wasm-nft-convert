@@ -17,7 +17,7 @@ import (
 	"github.com/evmos/ethermint/testutil/network"
 
 	upticknetwork "github.com/UptickNetwork/uptick/testutil/network"
-	"github.com/UptickNetwork/uptick/x/cw721/client/cli"
+	"github.com/UptickNetwork/wasm-nft-convert/client/cli"
 )
 
 type IntegrationTestSuite struct {

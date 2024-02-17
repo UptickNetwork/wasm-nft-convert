@@ -20,9 +20,9 @@ import (
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 
-	"github.com/UptickNetwork/uptick/x/cw721/client/cli"
-	"github.com/UptickNetwork/uptick/x/cw721/keeper"
-	"github.com/UptickNetwork/uptick/x/cw721/types"
+	"github.com/UptickNetwork/wasm-nft-convert/client/cli"
+	"github.com/UptickNetwork/wasm-nft-convert/keeper"
+	"github.com/UptickNetwork/wasm-nft-convert/types"
 )
 
 // type check to ensure the interface is properly implemented

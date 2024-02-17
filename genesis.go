@@ -4,8 +4,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
 
-	"github.com/UptickNetwork/uptick/x/cw721/keeper"
-	"github.com/UptickNetwork/uptick/x/cw721/types"
+	"github.com/UptickNetwork/wasm-nft-convert/keeper"
+	"github.com/UptickNetwork/wasm-nft-convert/types"
 )
 
 // InitGenesis import module genesis
