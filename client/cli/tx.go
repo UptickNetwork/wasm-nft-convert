@@ -54,6 +54,9 @@ func NewConvertNFTCmd() *cobra.Command {
 				return fmt.Errorf("classId can not be empty")
 			}
 
+			if args[1] == "" {
+				return fmt.Errorf("nft IDs can not be empty")
+			}
 			nftIDs := strings.Split(args[1], ",")
 			if len(nftIDs) == 0 {
 				return fmt.Errorf("nftID can not be empty")
@@ -64,6 +67,9 @@ func NewConvertNFTCmd() *cobra.Command {
 				return fmt.Errorf("contract address can not be empty")
 			}
 
+			if args[3] == "" {
+				return fmt.Errorf("token IDs can not be empty")
+			}
 			tokenIDs := strings.Split(args[3], ",")
 			if len(tokenIDs) == 0 {
 				return fmt.Errorf("token IDs can not be empty")
@@ -117,6 +123,9 @@ func NewConvertCW721Cmd() *cobra.Command {
 				return fmt.Errorf("contract address can not be empty")
 			}
 
+			if args[1] == "" {
+				return fmt.Errorf("token IDs can not be empty")
+			}
 			tokenIDs := strings.Split(args[1], ",")
 			if len(tokenIDs) == 0 {
 				return fmt.Errorf("tokenID can not be empty")
@@ -130,6 +139,9 @@ func NewConvertCW721Cmd() *cobra.Command {
 				return fmt.Errorf("classId can not be empty")
 			}
 
+			if args[3] == "" {
+				return fmt.Errorf("nft IDs can not be empty")
+			}
 			nftIDs := strings.Split(args[3], ",")
 			if len(nftIDs) == 0 {
 				return fmt.Errorf("nft IDs can not be empty")
@@ -190,6 +202,9 @@ func NewTransferCW721Cmd() *cobra.Command {
 				return fmt.Errorf("contract address can not be empty")
 			}
 
+			if args[1] == "" {
+				return fmt.Errorf("wasm token IDs can not be empty")
+			}
 			cwTokenIds := strings.Split(args[1], ",")
 			if len(cwTokenIds) == 0 {
 				return fmt.Errorf("tokenID can not be empty")
@@ -215,6 +230,9 @@ func NewTransferCW721Cmd() *cobra.Command {
 				return fmt.Errorf("classId can not be empty")
 			}
 
+			if args[6] == "" {
+				return fmt.Errorf("cosmos token IDs can not be empty")
+			}
 			cosmosTokenIds := strings.Split(args[6], ",")
 			if len(cwTokenIds) == 0 {
 				return fmt.Errorf("tokenIDs cannot be empty")
