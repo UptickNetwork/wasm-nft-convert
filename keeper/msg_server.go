@@ -2,9 +2,10 @@ package keeper
 
 import (
 	"context"
+	sdkerrors "cosmossdk.io/errors"
 	nftTypes "github.com/UptickNetwork/uptick/x/collection/types"
 	ibcnfttransfertypes "github.com/bianjieai/nft-transfer/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	errortypes "github.com/cosmos/cosmos-sdk/types/errors"
 	"strings"
 
 	"github.com/UptickNetwork/wasm-nft-convert/types"
@@ -115,7 +116,7 @@ func (k Keeper) convertWasm2Cosmos(
 		}
 
 		if allNftInfo.Access.Owner != msg.Sender {
-			return nil, sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "%s is not the owner of cw721 token %s", msg.Sender, strings.Join(msg.TokenIds, ","))
+			return nil, sdkerrors.Wrapf(errortypes.ErrUnauthorized, "%s is not the owner of cw721 token %s", msg.Sender, strings.Join(msg.TokenIds, ","))
 		}
 
 		// transfer to module address
@@ -146,7 +147,7 @@ func (k Keeper) convertWasm2Cosmos(
 		} else {
 			nftInfo, err := k.nftKeeper.GetNFT(ctx, msg.ClassId, msg.NftIds[i])
 			if err != nil {
-				return nil, sdkerrors.Wrapf(sdkerrors.ErrConflict, "fail to get nftInfo ", "classId", msg.ClassId, "nftId", msg.NftIds[i])
+				return nil, sdkerrors.Wrapf(errortypes.ErrConflict, "fail to get nftInfo ", "classId", msg.ClassId, "nftId", msg.NftIds[i])
 			}
 			transferNft := nftTypes.MsgTransferNFT{
 				DenomId:   msg.ClassId,
@@ -274,7 +275,7 @@ func (k Keeper) convertCosmos2Wasm(
 				return nil, err
 			}
 		} else {
-			return nil, sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "%s is not the owner of cw721 token %s", types.ModuleAddress, msg.TokenIds)
+			return nil, sdkerrors.Wrapf(errortypes.ErrUnauthorized, "%s is not the owner of cw721 token %s", types.ModuleAddress, msg.TokenIds)
 		}
 
 	}

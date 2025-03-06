@@ -6,10 +6,11 @@ import (
 	"net/http"
 	"sync"
 
+	sdkerrors "cosmossdk.io/errors"
+	"cosmossdk.io/math"
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	wasmtypes "github.com/CosmWasm/wasmd/x/wasm/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/ethereum/go-ethereum/common"
 	"math/big"
 
@@ -254,7 +255,7 @@ func (k Keeper) MintCw721(
 	} else {
 
 		// Execute the contract
-		funds := sdk.NewCoins(sdk.NewCoin("uptick", sdk.ZeroInt()))
+		funds := sdk.NewCoins(sdk.NewCoin("uptick", math.ZeroInt()))
 		// msgBytes := wasmtypes.RawContractMessage(`{"mint":{"token_id":"abc126","owner":"uptick100s3yp8l3atuuvx98jmftttxzy4ee5mg2n79fx","token_uri":"http://test.com"}}`)
 		execMsg := wasmtypes.MsgExecuteContract{
 			Sender:   sender,
@@ -305,7 +306,7 @@ func (k Keeper) TransferCw721(
 	} else {
 
 		// Execute the contract
-		funds := sdk.NewCoins(sdk.NewCoin("uptick", sdk.ZeroInt()))
+		funds := sdk.NewCoins(sdk.NewCoin("uptick", math.ZeroInt()))
 		execMsg := wasmtypes.MsgExecuteContract{
 			Sender:   sender,
 			Contract: contractAddress,

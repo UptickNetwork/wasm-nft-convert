@@ -1,9 +1,9 @@
 package keeper
 
 import (
+	sdkerrors "cosmossdk.io/errors"
 	"github.com/UptickNetwork/wasm-nft-convert/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"strconv"
 )
 

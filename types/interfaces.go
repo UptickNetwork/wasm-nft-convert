@@ -3,7 +3,7 @@ package types
 import (
 	context "context"
 
-	"github.com/cosmos/cosmos-sdk/x/nft"
+	"cosmossdk.io/x/nft"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 

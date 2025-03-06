@@ -4,10 +4,10 @@
 package types
 
 import (
+	_ "cosmossdk.io/x/nft"
 	fmt "fmt"
-	_ "github.com/cosmos/cosmos-sdk/x/nft"
-	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/cosmos/gogoproto/proto"
+	_ "gith
 	io "io"
 	math "math"
 	math_bits "math/bits"
