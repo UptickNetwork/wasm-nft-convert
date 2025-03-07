@@ -2,7 +2,7 @@ syntax = "proto3";
 package uptick.cw721.v1;
 
 import "gogoproto/gogo.proto";
-import "cosmos/nft/v1beta1/nft.proto";
+//import "cosmos/nft/v1beta1/nft.proto";
 
 option go_package = "github.com/UptickNetwork/wasm-nft-convert/types";
 

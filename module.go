@@ -27,7 +27,7 @@ import (
 
 // type check to ensure the interface is properly implemented
 var (
-	_ module.AppModule           = AppModule{}
+	//_ module.AppModule           = AppModule{}
 	_ module.AppModuleBasic      = AppModuleBasic{}
 	_ module.AppModuleSimulation = AppModule{}
 )
@@ -111,7 +111,7 @@ func (AppModule) Name() string {
 
 func (am AppModule) RegisterInvariants(ir sdk.InvariantRegistry) {}
 
-func (am AppModule) NewHandler() sdk.Handler {
+func (am AppModule) NewHandler() func(ctx sdk.Context, msg sdk.Msg) (*sdk.Result, error) {
 	return NewHandler(am.keeper)
 }
 
@@ -123,9 +123,9 @@ func (am AppModule) QuerierRoute() string {
 	return types.RouterKey
 }
 
-func (am AppModule) LegacyQuerierHandler(amino *codec.LegacyAmino) sdk.Queryable {
-	return nil
-}
+//func (am AppModule) LegacyQuerierHandler(amino *codec.LegacyAmino) sdk.Queryable {
+//	return nil
+//}
 
 func (am AppModule) RegisterServices(cfg module.Configurator) {
 	types.RegisterMsgServer(cfg.MsgServer(), am.keeper)
@@ -134,9 +134,9 @@ func (am AppModule) RegisterServices(cfg module.Configurator) {
 	_ = keeper.NewMigrator(am.keeper)
 }
 
-func (am AppModule) BeginBlock(_ sdk.Context, _ abci.RequestBeginBlock) {}
+func (am AppModule) BeginBlock(_ sdk.Context) {}
 
-func (am AppModule) EndBlock(_ sdk.Context, _ abci.RequestEndBlock) []abci.ValidatorUpdate {
+func (am AppModule) EndBlock(_ sdk.Context) []abci.ValidatorUpdate {
 	return []abci.ValidatorUpdate{}
 }
 
@@ -163,7 +163,7 @@ func (am AppModule) RandomizedParams(r *rand.Rand) []simtypes.Params {
 	return []simtypes.Params{}
 }
 
-func (am AppModule) RegisterStoreDecoder(decoderRegistry sdk.StoreDecoderRegistry) {}
+func (am AppModule) RegisterStoreDecoder(decoderRegistry simtypes.StoreDecoderRegistry) {}
 
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	return []simtypes.WeightedOperation{}

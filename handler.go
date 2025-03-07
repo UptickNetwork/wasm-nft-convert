@@ -2,13 +2,13 @@ package cw721
 
 import (
 	sdkerrors "cosmossdk.io/errors"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-
 	"github.com/UptickNetwork/wasm-nft-convert/types"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	errortypes "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 // NewHandler defines the cw721 module handler instance
-func NewHandler(server types.MsgServer) sdk.Handler {
+func NewHandler(server types.MsgServer) func(ctx sdk.Context, msg sdk.Msg) (*sdk.Result, error) {
 	return func(ctx sdk.Context, msg sdk.Msg) (*sdk.Result, error) {
 		ctx = ctx.WithEventManager(sdk.NewEventManager())
 
@@ -24,7 +24,7 @@ func NewHandler(server types.MsgServer) sdk.Handler {
 			return sdk.WrapServiceResult(ctx, res, err)
 			// return nil, nil
 		default:
-			err := sdkerrors.Wrapf(sdkerrors.ErrUnknownRequest, "unrecognized %s message type: %T", types.ModuleName, msg)
+			err := sdkerrors.Wrapf(errortypes.ErrUnknownRequest, "unrecognized %s message type: %T", types.ModuleName, msg)
 			return nil, err
 		}
 	}
