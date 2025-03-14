@@ -22,7 +22,7 @@ import (
 // Keeper of this module maintains collections of cw721.
 type Keeper struct {
 	storeKey   storetypes.StoreKey
-	cdc        codec.BinaryCodec
+	cdc        codec.Codec
 	paramstore paramtypes.Subspace
 
 	accountKeeper        types.AccountKeeper
@@ -35,7 +35,7 @@ type Keeper struct {
 
 // NewKeeper creates new instances of the cw721 Keeper
 func NewKeeper(storeKey storetypes.StoreKey,
-	cdc codec.BinaryCodec,
+	cdc codec.Codec,
 	ps paramtypes.Subspace,
 	ak types.AccountKeeper,
 	nk nftkeeper.Keeper,

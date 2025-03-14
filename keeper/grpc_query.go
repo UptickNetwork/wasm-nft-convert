@@ -74,7 +74,7 @@ func (k Keeper) Params(c context.Context, _ *types.QueryParamsRequest) (*types.Q
 }
 
 // WasmContract returns a given registered token pair
-func (k Keeper) WasmContract(c context.Context, req *types.QueryWasmAddressRequest) (*types.QueryTokenPairResponse, error) {
+func (k Keeper) WasmContract(c context.Context, req *types.QueryWasmAddressRequest) (*types.QueryWasmContractResponse, error) {
 
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "empty request")
@@ -95,6 +95,6 @@ func (k Keeper) WasmContract(c context.Context, req *types.QueryWasmAddressReque
 		return nil, status.Errorf(codes.NotFound, "token pair with token '%s'", token)
 	}
 
-	return &types.QueryTokenPairResponse{TokenPair: pair}, nil
+	return &types.QueryWasmContractResponse{TokenPair: pair}, nil
 
 }

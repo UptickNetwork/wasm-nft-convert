@@ -69,7 +69,7 @@ func (k Keeper) ConvertCW721(
 	goCtx context.Context,
 	msg *types.MsgConvertCW721,
 ) (
-	*types.MsgConvertCW721, error,
+	*types.MsgConvertCW721Response, error,
 ) {
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
@@ -93,8 +93,18 @@ func (k Keeper) ConvertCW721(
 		}
 	}
 
-	return k.convertWasm2Cosmos(ctx, msg) //
-
+	msgconvertcw721, err := k.convertWasm2Cosmos(ctx, msg) //
+	if err != nil {
+		return nil, sdkerrors.Wrapf(err, "failed to ConvertCW721 %v", err)
+	}
+	return &types.MsgConvertCW721Response{
+		ContractAddress: msgconvertcw721.ContractAddress,
+		TokenIds:        msgconvertcw721.TokenIds,
+		Receiver:        msgconvertcw721.Receiver,
+		Sender:          msgconvertcw721.Sender,
+		ClassId:         msgconvertcw721.ClassId,
+		NftIds:          msgconvertcw721.NftIds,
+	}, nil
 }
 
 // convertWasm2Cosmos handles the cw721 conversion for a native cw721 token
