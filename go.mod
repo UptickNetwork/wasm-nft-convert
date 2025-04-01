@@ -46,8 +46,7 @@ require (
 	github.com/UptickNetwork/uptick v0.2.20-0.20250309113750-8b3fcbb94575
 	github.com/bianjieai/nft-transfer v1.1.3-ibc-v8.6.1
 	github.com/cosmos/gogoproto v1.7.0
-	github.com/cosmos/ibc-go/v8 v8.6.1
-	github.com/gogo/protobuf v1.3.2
+	github.com/cosmos/ibc-go/v8 v8.7.0
 	github.com/tendermint/tendermint v0.35.9
 )
 
@@ -76,6 +75,7 @@ require (
 	github.com/fatih/color v1.15.0 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
+	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/flatbuffers v1.12.1 // indirect
 	github.com/hashicorp/go-hclog v1.5.0 // indirect
 	github.com/hashicorp/go-metrics v0.5.3 // indirect
