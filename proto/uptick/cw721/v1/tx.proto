@@ -1,6 +1,7 @@
 syntax = "proto3";
 package uptick.cw721.v1;
 
+import "cosmos/msg/v1/msg.proto";
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "ibc/core/client/v1/client.proto";
@@ -9,6 +10,7 @@ option go_package = "github.com/UptickNetwork/wasm-nft-convert/types";
 
 // Msg defines the cw721 Msg service.
 service Msg {
+  option (cosmos.msg.v1.service) = true;
   // ConvertNFT mints a CW721 representation of the native Cosmos nft
   // that is registered on the token mapping.
   rpc ConvertNFT(MsgConvertNFT) returns (MsgConvertNFTResponse) {
@@ -28,6 +30,7 @@ service Msg {
 
 // MsgConvertNFT defines a Msg to convert a native Cosmos nft to a CW721 token
 message MsgConvertNFT {
+  option (cosmos.msg.v1.signer) = "sender";
   // class_id to convert to CW721
   string class_id = 1;
   // nft_ids to convert to CW721
@@ -47,6 +50,7 @@ message MsgConvertNFTResponse {}
 
 // MsgConvertCW721 defines a Msg to convert a CW721 token to a native Cosmos nft
 message MsgConvertCW721 {
+  option (cosmos.msg.v1.signer) = "sender";
   // CW721 token contract address registered in a token pair
   string contract_address = 1;
   // token_ids to convert
@@ -81,7 +85,7 @@ message MsgConvertCW721Response {
 message MsgTransferCW721 {
   option (gogoproto.equal) = false;
   option (gogoproto.goproto_getters) = false;
-
+  option (cosmos.msg.v1.signer) = "cw_sender";
   // cw_contract_address is the CW721 token contract address
   string cw_contract_address = 1;
   // cw_token_ids are the token IDs to transfer
