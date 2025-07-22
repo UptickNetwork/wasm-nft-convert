@@ -2,9 +2,10 @@ package keeper
 
 import (
 	"context"
+	sdkerrors "cosmossdk.io/errors"
 	nftTypes "github.com/UptickNetwork/uptick/x/collection/types"
 	ibcnfttransfertypes "github.com/bianjieai/nft-transfer/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	errortypes "github.com/cosmos/cosmos-sdk/types/errors"
 	"strings"
 
 	"github.com/UptickNetwork/wasm-nft-convert/types"
@@ -68,7 +69,7 @@ func (k Keeper) ConvertCW721(
 	goCtx context.Context,
 	msg *types.MsgConvertCW721,
 ) (
-	*types.MsgConvertCW721, error,
+	*types.MsgConvertCW721Response, error,
 ) {
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
@@ -92,8 +93,18 @@ func (k Keeper) ConvertCW721(
 		}
 	}
 
-	return k.convertWasm2Cosmos(ctx, msg) //
-
+	msgconvertcw721, err := k.convertWasm2Cosmos(ctx, msg) //
+	if err != nil {
+		return nil, sdkerrors.Wrapf(err, "failed to ConvertCW721 %v", err)
+	}
+	return &types.MsgConvertCW721Response{
+		ContractAddress: msgconvertcw721.ContractAddress,
+		TokenIds:        msgconvertcw721.TokenIds,
+		Receiver:        msgconvertcw721.Receiver,
+		Sender:          msgconvertcw721.Sender,
+		ClassId:         msgconvertcw721.ClassId,
+		NftIds:          msgconvertcw721.NftIds,
+	}, nil
 }
 
 // convertWasm2Cosmos handles the cw721 conversion for a native cw721 token
@@ -115,7 +126,7 @@ func (k Keeper) convertWasm2Cosmos(
 		}
 
 		if allNftInfo.Access.Owner != msg.Sender {
-			return nil, sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "%s is not the owner of cw721 token %s", msg.Sender, strings.Join(msg.TokenIds, ","))
+			return nil, sdkerrors.Wrapf(errortypes.ErrUnauthorized, "%s is not the owner of cw721 token %s", msg.Sender, strings.Join(msg.TokenIds, ","))
 		}
 
 		// transfer to module address
@@ -146,7 +157,7 @@ func (k Keeper) convertWasm2Cosmos(
 		} else {
 			nftInfo, err := k.nftKeeper.GetNFT(ctx, msg.ClassId, msg.NftIds[i])
 			if err != nil {
-				return nil, sdkerrors.Wrapf(sdkerrors.ErrConflict, "fail to get nftInfo ", "classId", msg.ClassId, "nftId", msg.NftIds[i])
+				return nil, sdkerrors.Wrapf(errortypes.ErrConflict, "fail to get nftInfo ", "classId", msg.ClassId, "nftId", msg.NftIds[i])
 			}
 			transferNft := nftTypes.MsgTransferNFT{
 				DenomId:   msg.ClassId,
@@ -274,7 +285,7 @@ func (k Keeper) convertCosmos2Wasm(
 				return nil, err
 			}
 		} else {
-			return nil, sdkerrors.Wrapf(sdkerrors.ErrUnauthorized, "%s is not the owner of cw721 token %s", types.ModuleAddress, msg.TokenIds)
+			return nil, sdkerrors.Wrapf(errortypes.ErrUnauthorized, "%s is not the owner of cw721 token %s", types.ModuleAddress, msg.TokenIds)
 		}
 
 	}

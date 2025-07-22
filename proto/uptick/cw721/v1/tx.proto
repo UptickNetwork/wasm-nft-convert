@@ -1,0 +1,116 @@
+syntax = "proto3";
+package uptick.cw721.v1;
+
+import "cosmos/msg/v1/msg.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "ibc/core/client/v1/client.proto";
+
+option go_package = "github.com/UptickNetwork/wasm-nft-convert/types";
+
+// Msg defines the cw721 Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+  // ConvertNFT mints a CW721 representation of the native Cosmos nft
+  // that is registered on the token mapping.
+  rpc ConvertNFT(MsgConvertNFT) returns (MsgConvertNFTResponse) {
+    option (google.api.http).get = "/uptick/cw721/v1/tx/convert_nft";
+  }
+  // ConvertCW721 mints a native Cosmos coin representation of the CW721 token
+  // contract that is registered on the token mapping.
+  rpc ConvertCW721(MsgConvertCW721) returns (MsgConvertCW721Response) {
+    option (google.api.http).get = "/uptick/cw721/v1/tx/convert_cw721";
+  }
+
+  // TransferCW721 transfers a CW721 token from one chain to another chain through IBC
+  rpc TransferCW721(MsgTransferCW721) returns (MsgTransferCW721Response) {
+    option (google.api.http).get = "/uptick/cw721/v1/tx/ibc-transfer-cw721";
+  }
+}
+
+// MsgConvertNFT defines a Msg to convert a native Cosmos nft to a CW721 token
+message MsgConvertNFT {
+  option (cosmos.msg.v1.signer) = "sender";
+  // class_id to convert to CW721
+  string class_id = 1;
+  // nft_ids to convert to CW721
+  repeated string nft_ids = 2;
+  // recipient hex address to receive CW721 token
+  string receiver = 3;
+  // cosmos bech32 address from the owner of the given Cosmos coins
+  string sender = 4;
+  // CW721 token contract address registered in a token pair
+  string contract_address = 5;
+  // CW721 token id registered in a token pair
+  repeated string token_ids = 6;
+}
+
+// MsgConvertNFTResponse returns no fields
+message MsgConvertNFTResponse {}
+
+// MsgConvertCW721 defines a Msg to convert a CW721 token to a native Cosmos nft
+message MsgConvertCW721 {
+  option (cosmos.msg.v1.signer) = "sender";
+  // CW721 token contract address registered in a token pair
+  string contract_address = 1;
+  // token_ids to convert
+  repeated string token_ids = 2;
+  // bech32 address to receive native Cosmos coins
+  string receiver = 3;
+  // sender hex address from the owner of the given CW721 tokens
+  string sender = 4;
+  // class_id to convert to CW721
+  string class_id = 5;
+  // nft_ids to convert to CW721
+  repeated string nft_ids = 6;
+}
+
+// MsgConvertCW721Response returns no fields
+message MsgConvertCW721Response {
+  // CW721 token contract address registered in a token pair
+  string contract_address = 1;
+  // token_ids to convert
+  repeated string token_ids = 2;
+  // bech32 address to receive native Cosmos coins
+  string receiver = 3;
+  // sender hex address from the owner of the given CW721 tokens
+  string sender = 4;
+  // class_id to convert to CW721
+  string class_id = 5;
+  // nft_ids to convert to CW721
+  repeated string nft_ids = 6;
+}
+
+// MsgTransferCW721 defines a message for transferring CW721 tokens through IBC
+message MsgTransferCW721 {
+  option (gogoproto.equal) = false;
+  option (gogoproto.goproto_getters) = false;
+  option (cosmos.msg.v1.signer) = "cw_sender";
+  // cw_contract_address is the CW721 token contract address
+  string cw_contract_address = 1;
+  // cw_token_ids are the token IDs to transfer
+  repeated string cw_token_ids = 2;
+  // source_port is the port on which the packet will be sent
+  string source_port = 3;
+  // source_channel is the channel by which the packet will be sent
+  string source_channel = 4;
+  // class_id is the class ID of tokens to be transferred
+  string class_id = 5;
+  // cosmos_token_ids are the non fungible tokens to be transferred
+  repeated string cosmos_token_ids = 6;
+  // cw_sender is the sender address
+  string cw_sender = 7;
+  // cosmos_receiver is the recipient address on the destination chain
+  string cosmos_receiver = 8;
+  // timeout_height is the timeout height relative to the current block height
+  // The timeout is disabled when set to 0
+  ibc.core.client.v1.Height timeout_height = 9 [(gogoproto.nullable) = false];
+  // timeout_timestamp is the timeout timestamp in absolute nanoseconds since unix epoch
+  // The timeout is disabled when set to 0
+  uint64 timeout_timestamp = 10;
+  // memo is an optional memo field
+  string memo = 11;
+}
+
+// MsgTransferCW721Response defines the response type for TransferCW721 RPC
+message MsgTransferCW721Response {}

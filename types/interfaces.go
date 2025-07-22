@@ -3,7 +3,7 @@ package types
 import (
 	context "context"
 
-	"github.com/cosmos/cosmos-sdk/x/nft"
+	"cosmossdk.io/x/nft"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
@@ -18,7 +18,7 @@ import (
 // AccountKeeper defines the expected interface needed to retrieve account info.
 type AccountKeeper interface {
 	GetModuleAddress(moduleName string) sdk.AccAddress
-	GetSequence(sdk.Context, sdk.AccAddress) (uint64, error)
+	GetSequence(context.Context, sdk.AccAddress) (uint64, error)
 }
 
 // NFTKeeper defines the expected interface needed to retrieve account balances.

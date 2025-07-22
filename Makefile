@@ -370,41 +370,30 @@ devdoc-update:
 ###############################################################################
 ###                                Protobuf                                 ###
 ###############################################################################
+protoVer=0.14.0
+protoImageName=ghcr.io/cosmos/proto-builder:$(protoVer)
+protoImage=$(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace $(protoImageName)
 
-containerProtoVer=v0.3
-protoImageName=tendermintdev/sdk-proto-gen:$(containerProtoVer)
-containerProtoImage=tendermintdev/sdk-proto-gen:$(containerProtoVer)
-containerProtoGen=cosmos-sdk-proto-gen-$(containerProtoVer)
+proto-all: proto-format proto-lint proto-gen
 
-proto-all: proto-gen
-
-#proto-gen:
-#	@echo "Generating Protobuf files"
-#	@$(protoImage) sh ./scripts/protocgen.sh
 proto-gen:
 	@echo "Generating Protobuf files"
-	@if docker ps -a --format '{{.Names}}' | grep -Eq "^${containerProtoGen}$$"; then docker start -a $(containerProtoGen); else docker run --name $(containerProtoGen) -v $(CURDIR):/workspace --workdir /workspace $(protoImageName) \
-		sh ./scripts/protocgen.sh; fi
-	go mod tidy
+	@$(protoImage) sh ./scripts/protocgen.sh
 
 proto-swagger-gen:
 	@echo "Generating Protobuf Swagger"
 	@$(protoImage) sh ./scripts/protoc-swagger-gen.sh
 
 proto-format:
-	@$(protoImage) find ./ -name "*.proto" -exec clang-format -i {} \;
+	@$(protoImage) buf format --write proto/
 
 proto-lint:
 	@$(protoImage) buf lint --error-format=json
 
-proto-check-breaking:
-	@$(protoImage) buf breaking --against $(HTTPS_GIT)#branch=main
 
-proto-update-deps:
-	@echo "Updating Protobuf dependencies"
-	$(DOCKER) run --rm -v $(CURDIR)/proto:/workspace --workdir /workspace $(protoImageName) buf mod update
+drone-generate:
+	drone starlark --format --target .drone.star.yml
 
-.PHONY: proto-all proto-gen proto-gen-any proto-swagger-gen proto-format proto-lint proto-check-breaking proto-update-deps
 
 
 ###############################################################################

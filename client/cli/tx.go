@@ -3,8 +3,8 @@ package cli
 import (
 	"fmt"
 	ibcnfttransfertypes "github.com/bianjieai/nft-transfer/types"
-	clienttypes "github.com/cosmos/ibc-go/v7/modules/core/02-client/types"
-	channelutils "github.com/cosmos/ibc-go/v7/modules/core/04-channel/client/utils"
+	clienttypes "github.com/cosmos/ibc-go/v8/modules/core/02-client/types"
+	channelutils "github.com/cosmos/ibc-go/v8/modules/core/04-channel/client/utils"
 	"strings"
 
 	"github.com/spf13/cobra"

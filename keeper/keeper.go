@@ -5,12 +5,12 @@ import (
 	nftkeeper "github.com/UptickNetwork/uptick/x/collection/keeper"
 	ibcnfttransferkeeper "github.com/bianjieai/nft-transfer/keeper"
 	ibcnfttransfertypes "github.com/bianjieai/nft-transfer/types"
-	porttypes "github.com/cosmos/ibc-go/v7/modules/core/05-port/types"
+	porttypes "github.com/cosmos/ibc-go/v8/modules/core/05-port/types"
 
-	"github.com/cometbft/cometbft/libs/log"
+	"cosmossdk.io/log"
 
+	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/codec"
-	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 
@@ -22,7 +22,7 @@ import (
 // Keeper of this module maintains collections of cw721.
 type Keeper struct {
 	storeKey   storetypes.StoreKey
-	cdc        codec.BinaryCodec
+	cdc        codec.Codec
 	paramstore paramtypes.Subspace
 
 	accountKeeper        types.AccountKeeper
@@ -35,7 +35,7 @@ type Keeper struct {
 
 // NewKeeper creates new instances of the cw721 Keeper
 func NewKeeper(storeKey storetypes.StoreKey,
-	cdc codec.BinaryCodec,
+	cdc codec.Codec,
 	ps paramtypes.Subspace,
 	ak types.AccountKeeper,
 	nk nftkeeper.Keeper,
