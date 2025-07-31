@@ -8,10 +8,10 @@ require (
 	github.com/btcsuite/btcd/btcutil v1.1.6 // indirect
 	github.com/cometbft/cometbft v0.38.17
 	github.com/cometbft/cometbft-db v0.14.1 // indirect
-	github.com/cosmos/cosmos-sdk v0.50.11-lsm
+	github.com/cosmos/cosmos-sdk v0.50.11
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/ethereum/go-ethereum v1.10.26
-	github.com/evmos/ethermint v0.22.0
+	github.com/evmos/ethermint v1.10.26
 	github.com/golang/protobuf v1.5.4
 	github.com/gorilla/mux v1.8.1
 	github.com/gorilla/websocket v1.5.3 // indirect
@@ -43,7 +43,7 @@ require cosmossdk.io/math v1.4.0
 require (
 	cosmossdk.io/x/nft v0.1.1
 	github.com/CosmWasm/wasmd v0.53.3
-	github.com/UptickNetwork/uptick v0.2.20-0.20250731060240-654330510d5c
+	github.com/UptickNetwork/uptick v0.2.20-0.20250731130611-606bfe80c51a
 	github.com/bianjieai/nft-transfer v1.1.3-ibc-v8.6.1
 	github.com/cosmos/gogoproto v1.7.0
 	github.com/cosmos/ibc-go/v8 v8.7.0
@@ -269,10 +269,13 @@ require (
 )
 
 replace (
-	cosmossdk.io/api => github.com/informalsystems/cosmos-sdk/api v0.7.5-lsm
+	//cosmossdk.io/api => github.com/informalsystems/cosmos-sdk/api v0.7.5-lsm
 	// use cosmos fork of keyring
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.2.0
+	github.com/UptickNetwork/evm-nft-convert => github.com/UptickNetwork/evm-nft-convert v1.0.10-0.20250731061253-8d894e7acbf2
+	github.com/UptickNetwork/uptick => github.com/UptickNetwork/uptick v0.2.20-0.20250731130611-606bfe80c51a
 	github.com/evmos/ethermint => github.com/bianjieai/ethermint v0.23.0-irishub
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+
 )
