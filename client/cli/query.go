@@ -129,6 +129,7 @@ func GetParamsCmd() *cobra.Command {
 	return cmd
 }
 
+// GetWasmAddressFromIBCCmd queries a wasm contract from ibc info
 func GetWasmAddressFromIBCCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "wasm-contract [port] [channel] [classId]",
