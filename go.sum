@@ -713,6 +713,7 @@ github.com/StackExchange/wmi v1.2.1 h1:VIkavFPXSjcnS+O8yTq7NI32k0R5Aj+v39y29VYDO
 github.com/StackExchange/wmi v1.2.1/go.mod h1:rcmrprowKIVzvc+NUiLncP2uuArMWLCbu9SBzvHz7e8=
 github.com/UptickNetwork/ethermint v0.24.1-0.20260410052113-f2b0d61294a0 h1:pPgw8GIwpmkXvF35eDd8ahTmreq0GYvQWwnaSomzJSE=
 github.com/UptickNetwork/ethermint v0.24.1-0.20260410052113-f2b0d61294a0/go.mod h1:pQLLrCywO0OQPmy/gF0LmZzljUWLsg1ZdT+EM58gZ1o=
+github.com/UptickNetwork/ethermint v0.24.1-0.20260410091811-934a7c684d59/go.mod h1:pQLLrCywO0OQPmy/gF0LmZzljUWLsg1ZdT+EM58gZ1o=
 github.com/UptickNetwork/evm-nft-convert v1.1.5-0.20260410064519-a55b2bdc9b70 h1:jYSCyPqd03iOsBVJ17E8kGmHyjQcja7SNKoOdi7vvq8=
 github.com/UptickNetwork/evm-nft-convert v1.1.5-0.20260410064519-a55b2bdc9b70/go.mod h1:cjcTWGEaFkWcL75435HYDgLQm04S0B2kgtlctBolXvA=
 github.com/UptickNetwork/uptick v0.2.20-0.20250731130611-606bfe80c51a h1:kP8LB4IChRLGxDeO9lYSf1Ch1e1AXwC3qSvjPY16ga0=

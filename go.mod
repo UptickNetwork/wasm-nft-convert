@@ -43,7 +43,7 @@ require cosmossdk.io/math v1.4.0
 require (
 	cosmossdk.io/x/nft v0.1.1
 	github.com/CosmWasm/wasmd v0.53.3
-	github.com/UptickNetwork/uptick v0.2.20-0.20250731130611-606bfe80c51a
+	github.com/UptickNetwork/uptick v0.3.2-0.20260410092836-cc698785a89b
 	github.com/bianjieai/nft-transfer v1.1.3-ibc-v8.6.1
 	github.com/cosmos/gogoproto v1.7.0
 	github.com/cosmos/ibc-go/v8 v8.7.0
@@ -279,8 +279,7 @@ require (
 replace (
 	cosmossdk.io/tools/rosetta => cosmossdk.io/tools/rosetta v0.2.1-0.20230613133644-0a778132a60f
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.2.0
-	github.com/UptickNetwork/uptick => github.com/UptickNetwork/uptick v0.2.20-0.20250731130611-606bfe80c51a
-	github.com/evmos/ethermint => github.com/UptickNetwork/ethermint v0.24.1-0.20260410052113-f2b0d61294a0
+	github.com/evmos/ethermint => github.com/UptickNetwork/ethermint v0.24.1-0.20260410091811-934a7c684d59
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 
