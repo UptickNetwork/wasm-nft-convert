@@ -174,7 +174,7 @@ require (
 	cloud.google.com/go v0.115.0 // indirect
 	cloud.google.com/go/iam v1.1.9 // indirect
 	cloud.google.com/go/storage v1.41.0 // indirect; indirectx
-	filippo.io/edwards25519 v1.1.0 // indirect
+	filippo.io/edwards25519 v1.1.1 // indirect
 	github.com/99designs/keyring v1.2.2 // indirect
 	github.com/StackExchange/wmi v1.2.1 // indirect
 	github.com/VictoriaMetrics/fastcache v1.12.2 // indirect
@@ -279,7 +279,7 @@ require (
 replace (
 	cosmossdk.io/tools/rosetta => cosmossdk.io/tools/rosetta v0.2.1-0.20230613133644-0a778132a60f
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.2.0
-	github.com/evmos/ethermint => github.com/UptickNetwork/ethermint v0.24.1-0.20260410091811-934a7c684d59
+	github.com/evmos/ethermint => github.com/UptickNetwork/ethermint v0.24.1-0.20260411025020-ba867a4df9f4
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 
